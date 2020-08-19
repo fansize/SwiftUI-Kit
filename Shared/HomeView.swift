@@ -20,7 +20,7 @@ struct HomeView: View {
                             .frame(maxHeight: 240)
                     }
                     #else
-                    TutorialItem(tutorial: tutorial)
+                    CardItem(card: card)
                         .frame(maxHeight: 240)
                     #endif
                 }
