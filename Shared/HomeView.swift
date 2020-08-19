@@ -9,7 +9,25 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            LazyVGrid(
+                columns: [GridItem(.adaptive(minimum: 160), spacing: 16)],
+                spacing: 16) {
+                ForEach(cards) { card in
+                    #if os(iOS)
+                    NavigationLink(destination: CoursesList()) {
+                        CardItem(card: card)
+                            .frame(maxHeight: 240)
+                    }
+                    #else
+                    TutorialItem(tutorial: tutorial)
+                        .frame(maxHeight: 240)
+                    #endif
+                }
+            }
+            .padding()
+        }
+        .navigationTitle("Tutorials")
     }
 }
 

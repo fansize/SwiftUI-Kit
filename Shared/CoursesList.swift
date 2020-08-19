@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct CoursesList: View {
+    @State var matching: String = "Button()"
+    @State var matching2: String = "struct"
+    
+    var codeView: some View {
+        VStack {
+            HighlightedText(buttonCode, matching: self.matching, caseInsensitiv: true)
+                .font(.system(size: 13, weight: .bold, design: .monospaced))
+                .foregroundColor(Color.black.opacity(0.8))
+        }
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .topTrailing) {
+            VStack {
+                codeView
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 250)
+                    .background(Color.blue)
+                NavigationView {
+                    Grouping(title: "Buttons", icon: "capsule", content: { ButtonsGroup() })
+                }
+            }
+            
+            CloseButton()
+                .padding(20)
+        }
+        .ignoresSafeArea(.all)
     }
 }
 
